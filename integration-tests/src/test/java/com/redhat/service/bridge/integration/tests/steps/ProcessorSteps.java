@@ -6,12 +6,12 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
+import com.redhat.service.bridge.integration.tests.common.SlackUtils;
 import org.awaitility.Awaitility;
 import org.hamcrest.Matchers;
 
 import com.redhat.service.bridge.infra.models.actions.BaseAction;
 import com.redhat.service.bridge.infra.models.dto.BridgeStatus;
-import com.redhat.service.bridge.integration.tests.common.SlackUtils;
 import com.redhat.service.bridge.integration.tests.common.Utils;
 import com.redhat.service.bridge.integration.tests.context.BridgeContext;
 import com.redhat.service.bridge.integration.tests.context.ProcessorContext;

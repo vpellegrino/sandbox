@@ -10,6 +10,7 @@ import org.awaitility.Awaitility;
 import org.hamcrest.Matchers;
 
 import com.redhat.service.bridge.integration.tests.common.BridgeUtils;
+import com.redhat.service.bridge.integration.tests.common.SlackUtils;
 import com.redhat.service.bridge.integration.tests.context.TestContext;
 import com.redhat.service.bridge.integration.tests.resources.IngressResource;
 
@@ -68,6 +69,13 @@ public class IngressSteps {
     public void sendPlainCloudEventToIngressOfBridgeWithPathIsFailingWithHTTPResponseCode(String testBridgeName,
             String path, int responseCode, String cloudEvent) {
         sendAndCheckCloudEvent(testBridgeName, cloudEvent, path, getDefaultCloudEventHeaders(), responseCode);
+    }
+
+    @When("^send a slack message cloud event to the Ingress of the Bridge \"([^\"]*)\" with path \"([^\"]*)\":$")
+    public void sendSlackMessageToIngressEndpoint(String testBridgeName, String path, String cloudEvent) {
+
+        String slackCloudEvent = SlackUtils.setAndRetrieveSlackMessageCloudEvent(cloudEvent);
+        sendAndCheckCloudEvent(testBridgeName, slackCloudEvent, path, getDefaultCloudEventHeaders(), 200);
     }
 
     private void sendAndCheckCloudEvent(String testBridgeName, String cloudEvent, String path, int responseCode) {
